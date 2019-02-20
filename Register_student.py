@@ -27,7 +27,7 @@ try:
         if cv2.waitKey(100) & 0xFF == ord('q'):
             break
         # break if the sample number is morethan 100
-        elif sampleNum > 49:
+        elif sampleNum > 199:
             print('Thanks!! you are registered on our Datasets')
             break
     cam.release()
