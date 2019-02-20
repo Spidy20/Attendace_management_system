@@ -108,7 +108,7 @@ def subjectchoose():
     def Fillattendances():
         sub=tx.get()
         now = time.time()  ###For calculate seconds of video
-        future = now + 10
+        future = now + 20
         if time.time() < future:
             if sub == '':
                 err_screen1()
@@ -133,11 +133,15 @@ def subjectchoose():
                     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
                     faces = faceCascade.detectMultiScale(gray, 1.2, 5)
                     for (x, y, w, h) in faces:
+                        global Id
 
                         Id, conf = recognizer.predict(gray[y:y + h, x:x + w])
                         if (conf > 50):
                             print(conf)
                             global Subject
+                            global aa
+                            global date
+                            global timeStamp
                             Subject = tx.get()
                             ts = time.time()
                             date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
@@ -168,8 +172,42 @@ def subjectchoose():
                 date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
                 timeStamp = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
                 Hour, Minute, Second = timeStamp.split(":")
+                ####Creatting csv of attendance
                 fileName = "Attendance/" + Subject + "_" + date + "_" + Hour + "-" + Minute + "-" + Second + ".csv"
                 attendance.to_csv(fileName, index=False)
+
+                ##Create table for Attendance
+                date_for_DB = datetime.datetime.fromtimestamp(ts).strftime('%Y_%m_%d')
+                DB_Table_name = str( Subject + "_" + date_for_DB + "_Time_" + Hour + "_" + Minute + "_" + Second)
+                print(DB_Table_name)
+                import pymysql.connections
+
+                ###Connect to the database
+                try:
+                    global cursor
+                    connection = pymysql.connect(host='localhost', user='root', password='', db='test')
+                    cursor = connection.cursor()
+                except Exception as e:
+                    print(e)
+
+                sql = "CREATE TABLE " + DB_Table_name + """
+                (ID INT NOT NULL AUTO_INCREMENT,
+                 ENROLLMENT varchar(100) NOT NULL,
+                 NAME VARCHAR(50) NOT NULL,
+                 DATE VARCHAR(20) NOT NULL,
+                 TIME VARCHAR(20) NOT NULL,
+                     PRIMARY KEY (ID)
+                     );
+                """
+                ####Now enter attendance in Database
+                insert_data =  "INSERT INTO " + DB_Table_name + " (ID,ENROLLMENT,NAME,DATE,TIME) VALUES (0, %s, %s, %s,%s)"
+                VALUES = (str(Id), str(aa), str(date), str(timeStamp))
+                try:
+                    cursor.execute(sql)  ##for create a table
+                    cursor.execute(insert_data, VALUES)##For insert data into table
+                except Exception as ex:
+                    print(ex)  #
+
                 M = 'Attendance filled Successfully'
                 Notifica.configure(text=M, bg="Green", fg="white", width=33, font=('times', 15, 'bold'))
                 Notifica.place(x=20, y=250)
