@@ -1,8 +1,6 @@
 import tkinter as tk
-from tkinter import Message, Text
 from tkinter import *
 import cv2
-import shutil
 import csv
 import os
 import numpy as np
@@ -299,7 +297,7 @@ def take_img():
             Notification.place(x=450, y=400)
 
 
-###for choose subject and fill attendance
+###for choose subject and fill Automatic attendance
 def subjectchoose():
     def Fillattendances():
         sub=tx.get()

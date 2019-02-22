@@ -1,8 +1,6 @@
 import tkinter as tk
-from tkinter import Message, Text
 from tkinter import *
 import cv2
-import shutil
 import csv
 import os
 import numpy as np
@@ -166,6 +164,25 @@ def manually_fill():
                     O="CSV created Successfully"
                     Notifi.configure(text=O, bg="Green", fg="white", width=33, font=('times', 19, 'bold'))
                     Notifi.place(x=180, y=380)
+                import csv
+                import tkinter
+                root = tkinter.Tk()
+                root.title("Attendance of " + subb)
+                root.configure(background='snow')
+                with open(csv_name, newline="") as file:
+                    reader = csv.reader(file)
+                    r = 0
+
+                    for col in reader:
+                        c = 0
+                        for row in col:
+                            # i've added some styling
+                            label = tkinter.Label(root, width=13, height=1, fg="black", font=('times', 13, ' bold '),
+                                                  bg="lawn green", text=row, relief=tkinter.RIDGE)
+                            label.grid(row=r, column=c)
+                            c += 1
+                        r += 1
+                root.mainloop()
 
             Notifi = tk.Label(MFW, text="CSV created Successfully", bg="Green", fg="white", width=33,
                                 height=2, font=('times', 19, 'bold'))
