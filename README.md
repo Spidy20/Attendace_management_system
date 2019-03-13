@@ -4,10 +4,10 @@
 <a href="https://sourcerer.io/spidy20"><img src="https://avatars2.githubusercontent.com/u/42056100?v=4" height="50px" width="50px" alt=""/></a>
 
 ### Code Requirements
-- Opencv
-- Tkinter(Available in python package)
-- PIL 
-- Pandas
+- Opencv(`pip install opencv-python`)
+- Tkinter(Available in python)
+- PIL (`pip install Pillow`)
+- Pandas(`pip install pandas`)
 
 ### What steps you have to follow??
 - Download my Repository 
