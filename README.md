@@ -30,11 +30,14 @@
 
 ### Basic UI
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(43).png">
-### When it's recognize me
+
+### When it's Recognise me
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(41).png">
-### When it's fill a attendance
+
+### When it's fill a attendace
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(42).png">
-### Manually filling attendace UI
+
+### Manually attendance filling UI
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(44).png">
 
 
