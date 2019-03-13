@@ -32,11 +32,10 @@
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(43).png">
 ### When it's recognize me
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(41).png">
-### When its fill a Attendace
+### When it's fill a attendance
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(42).png">
-### Mannually fill attendace UI
+### Manually filling attendace UI
 <img src="https://github.com/Spidy20/Attendace_management_system/blob/master/Screenshot%20(44).png">
-
 
 
 ### How it works? See:)
