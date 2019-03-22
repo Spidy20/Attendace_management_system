@@ -164,6 +164,25 @@ def manually_fill():
                     O="CSV created Successfully"
                     Notifi.configure(text=O, bg="Green", fg="white", width=33, font=('times', 19, 'bold'))
                     Notifi.place(x=180, y=380)
+                import csv
+                import tkinter
+                root = tkinter.Tk()
+                root.title("Attendance of " + subb)
+                root.configure(background='snow')
+                with open(csv_name, newline="") as file:
+                    reader = csv.reader(file)
+                    r = 0
+
+                    for col in reader:
+                        c = 0
+                        for row in col:
+                            # i've added some styling
+                            label = tkinter.Label(root, width=13, height=1, fg="black", font=('times', 13, ' bold '),
+                                                  bg="lawn green", text=row, relief=tkinter.RIDGE)
+                            label.grid(row=r, column=c)
+                            c += 1
+                        r += 1
+                root.mainloop()
 
             Notifi = tk.Label(MFW, text="CSV created Successfully", bg="Green", fg="white", width=33,
                                 height=2, font=('times', 19, 'bold'))
@@ -297,7 +316,7 @@ def take_img():
             Notification.place(x=450, y=400)
 
 
-###for choose subject and fill Automatic attendance
+###for choose subject and fill attendance
 def subjectchoose():
     def Fillattendances():
         sub=tx.get()
@@ -346,7 +365,7 @@ def subjectchoose():
                             En = '15624031' + str(Id)
                             attendance.loc[len(attendance)] = [Id, aa, date, timeStamp]
                             cv2.rectangle(im, (x, y), (x + w, y + h), (0, 260, 0), 7)
-                            cv2.putText(im, str(tt), (x + h, y), font, 1, (0, 260, 0,), 4)
+                            cv2.putText(im, str(tt), (x + h, y), font, 1, (255, 255, 0,), 4)
 
                         else:
                             Id = 'Unknown'
@@ -356,7 +375,7 @@ def subjectchoose():
                     if time.time() > future:
                         break
 
-                    attendance = attendance.drop_duplicates(subset=['Enrollment'], keep='first')
+                    attendance = attendance.drop_duplicates(['Enrollment'], keep='first')
                     cv2.imshow('Filling attedance..', im)
                     key = cv2.waitKey(30) & 0xff
                     if key == 27:
@@ -446,7 +465,6 @@ def subjectchoose():
 
     attf = tk.Button(windo,  text="Check Sheets",command=Attf,fg="black"  ,bg="lawn green"  ,width=12  ,height=1 ,activebackground = "Red" ,font=('times', 14, ' bold '))
     attf.place(x=430, y=255)
-
 
     sub = tk.Label(windo, text="Enter Subject", width=15, height=2, fg="white", bg="blue2", font=('times', 15, ' bold '))
     sub.place(x=30, y=100)
@@ -609,7 +627,7 @@ message = tk.Label(window, text="Face-Recognition-Based-Attendance-Management-Sy
 message.place(x=80, y=20)
 
 Notification = tk.Label(window, text="All things good", bg="Green", fg="white", width=15,
-                   height=3, font=('times', 17, 'bold'))
+                      height=3, font=('times', 17, 'bold'))
 
 lbl = tk.Label(window, text="Enter Enrollment", width=20, height=2, fg="black", bg="deep pink", font=('times', 15, ' bold '))
 lbl.place(x=200, y=200)

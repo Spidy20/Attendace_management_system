@@ -365,7 +365,7 @@ def subjectchoose():
                             En = '15624031' + str(Id)
                             attendance.loc[len(attendance)] = [Id, aa, date, timeStamp]
                             cv2.rectangle(im, (x, y), (x + w, y + h), (0, 260, 0), 7)
-                            cv2.putText(im, str(tt), (x + h, y), font, 1, (0, 260, 0,), 4)
+                            cv2.putText(im, str(tt), (x + h, y), font, 1, (255, 255, 0,), 4)
 
                         else:
                             Id = 'Unknown'
@@ -375,7 +375,7 @@ def subjectchoose():
                     if time.time() > future:
                         break
 
-                    attendance = attendance.drop_duplicates(subset=['Enrollment'], keep='first')
+                    attendance = attendance.drop_duplicates(['Enrollment'], keep='first')
                     cv2.imshow('Filling attedance..', im)
                     key = cv2.waitKey(30) & 0xff
                     if key == 27:
@@ -628,7 +628,7 @@ message = tk.Label(window, text="Face-Recognition-Based-Attendance-Management-Sy
 message.place(x=80, y=20)
 
 Notification = tk.Label(window, text="All things good", bg="Green", fg="white", width=15,
-                   height=3, font=('times', 17, 'bold'))
+                      height=3, font=('times', 17, 'bold'))
 
 lbl = tk.Label(window, text="Enter Enrollment", width=20, height=2, fg="black", bg="deep pink", font=('times', 15, ' bold '))
 lbl.place(x=200, y=200)
