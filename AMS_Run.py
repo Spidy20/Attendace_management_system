@@ -59,7 +59,7 @@ def manually_fill():
         ###Connect to the database
         try:
             global cursor
-            connection = pymysql.connect(host='localhost', user='root', password='', db='test')
+            connection = pymysql.connect(host='localhost', user='root', password='', db='manually_fill_attendance')
             cursor = connection.cursor()
         except Exception as e:
             print(e)
@@ -231,7 +231,6 @@ def manually_fill():
     fill_manual_attendance.place(x=250, y=160)
     sb.mainloop()
 
-
 ##For clear textbox
 def clear():
     txt.delete(first=0, last=22)
@@ -282,7 +281,6 @@ def take_img():
                 ret, img = cam.read()
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                 faces = detector.detectMultiScale(gray, 1.3, 5)
-
                 for (x, y, w, h) in faces:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
                     # incrementing sample number
@@ -295,7 +293,7 @@ def take_img():
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
                 # break if the sample number is morethan 100
-                elif sampleNum > 200:
+                elif sampleNum > 70:
                     break
             cam.release()
             cv2.destroyAllWindows()
@@ -335,7 +333,7 @@ def subjectchoose():
                     Notifica.place(x=20, y=250)
 
                 harcascadePath = "haarcascade_frontalface_default.xml"
-                faceCascade = cv2.CascadeClassifier(harcascadePath);
+                faceCascade = cv2.CascadeClassifier(harcascadePath)
                 df = pd.read_csv("StudentDetails\StudentDetails.csv")
                 cam = cv2.VideoCapture(0)
                 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -349,7 +347,7 @@ def subjectchoose():
                         global Id
 
                         Id, conf = recognizer.predict(gray[y:y + h, x:x + w])
-                        if (conf > 50):
+                        if (conf <70):
                             print(conf)
                             global Subject
                             global aa
@@ -385,8 +383,9 @@ def subjectchoose():
                 date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
                 timeStamp = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
                 Hour, Minute, Second = timeStamp.split(":")
-                ####Creatting csv of attendance
                 fileName = "Attendance/" + Subject + "_" + date + "_" + Hour + "-" + Minute + "-" + Second + ".csv"
+                attendance = attendance.drop_duplicates(['Enrollment'], keep='first')
+                print(attendance)
                 attendance.to_csv(fileName, index=False)
 
                 ##Create table for Attendance
@@ -397,7 +396,7 @@ def subjectchoose():
                 ###Connect to the database
                 try:
                     global cursor
-                    connection = pymysql.connect(host='localhost', user='root', password='', db='test')
+                    connection = pymysql.connect(host='localhost', user='root', password='', db='Face_reco_fill')
                     cursor = connection.cursor()
                 except Exception as e:
                     print(e)
@@ -455,7 +454,6 @@ def subjectchoose():
     windo.title("Enter subject name...")
     windo.geometry('580x320')
     windo.configure(background='snow')
-
     Notifica = tk.Label(windo, text="Attendance filled Successfully", bg="Green", fg="white", width=33,
                             height=2, font=('times', 15, 'bold'))
 
@@ -465,7 +463,6 @@ def subjectchoose():
 
     attf = tk.Button(windo,  text="Check Sheets",command=Attf,fg="black"  ,bg="lawn green"  ,width=12  ,height=1 ,activebackground = "Red" ,font=('times', 14, ' bold '))
     attf.place(x=430, y=255)
-
 
     sub = tk.Label(windo, text="Enter Subject", width=15, height=2, fg="white", bg="blue2", font=('times', 15, ' bold '))
     sub.place(x=30, y=100)
@@ -610,7 +607,6 @@ def getImagesAndLabels(path):
             faceSamples.append(imageNp[y:y + h, x:x + w])
             Ids.append(Id)
     return faceSamples, Ids
-
 
 window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=1)
