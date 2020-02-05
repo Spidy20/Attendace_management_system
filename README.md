@@ -2,6 +2,7 @@
 
 ### Sourcerer
 <a href="https://sourcerer.io/spidy20"><img src="https://avatars2.githubusercontent.com/u/42056100?v=4" height="50px" width="50px" alt=""/></a>
+### Buy My Machine learning & Python projects at very reasonable price from [here](https://www.instamojo.com/kushalbhavsar1820/)
 
 ### Code Requirements
 - Opencv(`pip install opencv-python`)
