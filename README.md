@@ -58,4 +58,6 @@
 
 ## Just follow☝️ me and Star⭐ my repository 
 
+## Read our Machine learning & Data science related blogs:- [Here](https://www.vruttitanna.com/post/why-kaggle-is-important-for-data-science)
+
 ## Buy more projects at very low price:- [STORE](https://www.instamojo.com/kushalbhavsar1820)
