@@ -57,3 +57,5 @@
 - Noisy image can reduce your accuracy so quality of images matter.
 
 ## Just follow☝️ me and Star⭐ my repository 
+
+## Buy more projects at very low price:- [STORE](https://www.instamojo.com/kushalbhavsar1820)
